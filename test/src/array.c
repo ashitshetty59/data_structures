@@ -6,11 +6,16 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(void) {
-  int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-  printf("number is %d", arr[2]);
-  arr[3] = 5;
+int main(int argc, char const *argv[]) {
+  int arr[20], a, b, c;
+
+  if (a < b && a > c) {
+    printf("a");
+  } else if (b > c) {
+    printf("b\n", b);
+  } else {
+    printf("c\n", c);
+  }
   return 0;
 }
