@@ -7,7 +7,8 @@ struct node_ {
 };
 typedef struct node_ node;
 
-node *add_node(node **head_ptr, int value) {
+node *add_node(node **head_ptr, int value)
+{
   node *new_node = (node *)malloc(sizeof(node));
 
   new_node->data = value;
@@ -16,33 +17,41 @@ node *add_node(node **head_ptr, int value) {
   return new_node;
 }
 
-void delete_node(node **head_ptr, node *entry) {
+void delete_node(node **head_ptr, node *entry)
+{
   node **traverse = head_ptr;
-  while ( *traverse != entry) {
-    traverse = &(*traverse)->next;
-  }
+
+  while (*traverse != entry)
+    {
+      traverse = &(*traverse)->next;
+    }
   printf("%d\n", (*traverse)->data);
   *traverse = entry->next;
   free(entry);
 }
 
-void display_list(node *traverse) {
-  if (traverse == NULL) {
-    printf("empty list\n");
-    return;
-  }
+void display_list(node *traverse)
+{
+  if (traverse == NULL)
+    {
+      printf("empty list\n");
+      return;
+    }
 
   printf("head->");
-  while (traverse != NULL) {
-    printf("%d->", traverse->data);
-    traverse = traverse->next;
-  }
+  while (traverse != NULL)
+    {
+      printf("%d->", traverse->data);
+      traverse = traverse->next;
+    }
   printf("null\n");
 }
 
-int main(void) {
+int main(void)
+{
   node *head = NULL;
   node *n1;
+
   display_list(head);
   add_node(&head, 2);
   display_list(head);
