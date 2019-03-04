@@ -9,11 +9,26 @@ struct node_ {
 
 node *add_node(node **head_ptr, int value)
 {
-  node *new_node = (node *)malloc(sizeof(node));
+  node *new_node = (node*)malloc(sizeof(node));
 
   new_node->data = value;
   new_node->next = *head_ptr;
   *head_ptr = new_node;
+  return new_node;
+}
+
+node *add_node_pos(node **head_ptr, int value, int n)
+{
+  node **traverse = head_ptr;
+  node *new_node = (node*)malloc(sizeof(node));
+  new_node->data = value;
+
+  for (int i = 1; i < n && *traverse != NULL; i++)
+    {
+      traverse = &(*traverse)->next;
+    }
+  new_node->next = *traverse;
+  *traverse = new_node;
   return new_node;
 }
 
@@ -28,6 +43,19 @@ void delete_node(node **head_ptr, node *entry)
   printf("%d\n", (*traverse)->data);
   *traverse = entry->next;
   free(entry);
+}
+
+void delete_node_pos(node **head_ptr, int n)
+{
+  node **traverse = head_ptr;
+  node *node_to_delete;
+  for (int i = 1; i < n; i++)
+    {
+      traverse = &(*traverse)->next;
+    }
+  node_to_delete = *traverse;
+  *traverse = (*traverse)->next;
+  free(node_to_delete);
 }
 
 void display_list(node *traverse)
@@ -64,5 +92,10 @@ int main(void)
   display_list(head);
   delete_node(&head, n1);
   display_list(head);
+  add_node_pos(&head, 8, 6);
+  display_list(head);
+  delete_node_pos(&head, 9);
+  display_list(head);
+
   return 0;
 }
